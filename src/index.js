@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
-import weatherApp from './reducers';
+import { appReducer, initialState } from './reducers';
+
 /* eslint-disable no-underscore-dangle */
-const store = createStore(
-    weatherApp,
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(appReducer, initialState, composeEnhancers(
+    applyMiddleware(thunk)
+));
 /* eslint-enable */
 
 ReactDOM.render(

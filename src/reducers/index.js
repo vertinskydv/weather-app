@@ -1,14 +1,13 @@
 import { SET_CURRENT_CITY } from "../actions";
 
-const initialState = {
+export const initialState = {
   currentCity: ''
 }
 
-export default function weatherApp(state = initialState, action) {
+export function appReducer(state = initialState, action) {
     switch (action.type) {
       case SET_CURRENT_CITY:
-        return {...state, currentCity: action.payload}
-        break;
+      return {...state, currentCity: action.payload}
       case 'eee':
         break;
       default:
