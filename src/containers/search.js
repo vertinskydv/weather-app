@@ -1,38 +1,37 @@
 import React from 'react';
-import { setCurrentCity, getCityWeatherData } from '../actions'
-import TextField from 'material-ui/TextField';
+import { setSearchline, getThreeDayWeatherData } from '../actions'
+import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux'
 
-const SearchCityField = ({currentCity, setCity, getCityWeatherData}) => {
+const SearchCityField = ({searchline, setSearchline, getThreeDayWeatherData}) => {
     return (<TextField
         fullWidth = {true}
-        hintText = 'Search by city'
+        hinttext = 'Search by city'
         className = 'search-field'
         onKeyPress = {event => {
-            if (event.key === 'Enter' && currentCity) {
-                getCityWeatherData(event.target.value);
+            if (event.key === 'Enter' && searchline) {
+                getThreeDayWeatherData(searchline);
             }
         }}
         onChange = { event => {
-            setCity(event.target.value);
+            setSearchline(event.target.value);
         }}
     />)
 }
 
 function mapStateToProps (state) {
     return {
-        currentCity: state.currentCity
+        searchline: state.searchline
     }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
-        setCity: (city) => {
-            dispatch(setCurrentCity(city));
+        setSearchline: (city) => {
+            dispatch(setSearchline(city));
         },
-        getCityWeatherData: (city) => {
-            console.log(city);
-            dispatch(getCityWeatherData(city))
+        getThreeDayWeatherData: (city) => {
+            dispatch(getThreeDayWeatherData(city))
         }
     }
 }
