@@ -1,16 +1,16 @@
-import { SET_SEARCHLINE, SET_THREE_DAY_WEATHER } from "../actions";
+import { SET_SEARCHLINE, SET_FIVE_DAY_WEATHER } from "../actions";
 
 export const initialState = {
-  searchline: '',
-  threeDayWeather: null
+  forecastCity: '',
+  fiveDayWeather: null
 }
 
 export function appReducer(state = initialState, action) {
     switch (action.type) {
       case SET_SEARCHLINE:
-        return {...state, searchline: action.payload}
-      case SET_THREE_DAY_WEATHER:
-        return {...state, threeDayWeather: action.payload}
+        return {...state, forecastCity: action.payload}
+      case SET_FIVE_DAY_WEATHER:
+        return {...state, fiveDayWeather: action.payload}
       default:
         return state
     }

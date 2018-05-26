@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import SearchCityField from "./containers/search"
-import CityWeatherTabs from "./containers/cityWeatherTabs"
+import Header from "./containers/header"
+import CityForecast from "./containers/cityForecast"
 
 import './App.css';
 
@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <SearchCityField />
-        <CityWeatherTabs />
+          <Header />
+          <CityForecast />
       </React.Fragment>
     )
   };
