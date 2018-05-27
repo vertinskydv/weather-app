@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Header from "./containers/header"
 import CityForecast from "./containers/cityForecast"
@@ -12,7 +13,11 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
           <Header />
-          <CityForecast />
+          <Switch>
+           <Route path='/forecast' component={CityForecast} />
+           <Route path='/history-forecast' component={Header} />
+           <Redirect from="/" to="/forecast" />
+          </Switch>
       </React.Fragment>
     )
   };

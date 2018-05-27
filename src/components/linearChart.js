@@ -36,9 +36,6 @@ class LinearChart extends React.Component {
             data.push(weather.main.temp);
         });
         this.chart = Highcharts.chart(this.chartId, {
-            title: {
-                text: 'Temperature of the next three days'
-            },
             xAxis: {
                 categories
             },

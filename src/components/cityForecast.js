@@ -19,8 +19,8 @@ const styles = (theme) => ({
         marginLeft: 10,
         marginRight: 10
     },
-    divider: {
-        marginTop: 30
+    forecastViewSelect: {
+        marginTop: 10
     }
 })
 
@@ -30,10 +30,12 @@ class cityForecast extends React.Component {
     }
 
     render() {
+        let { classes } = this.props;
         let forecastView = [];
         if (this.props.fiveDayWeather) {
             forecastView.push(
-                <Select key='three-day-forecast-select-view'
+                <Select key='three-day-forecast-select-view' 
+                    className={classes.forecastViewSelect}
                     value={this.state.value}
                     onChange={this.handleViewSelectChange}
                 >
@@ -49,8 +51,6 @@ class cityForecast extends React.Component {
             }
         }
 
-
-        let { classes } = this.props;
         return (
             <Fragment>
                 <Card className={classes.weatherCard}>
