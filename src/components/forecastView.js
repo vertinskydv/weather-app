@@ -9,7 +9,6 @@ import Select from '@material-ui/core/Select';
 import LinearChart from './linearChart';
 import WeatherTable from './weatherTable';
 
-
 import CityForecastSearch from '../containers/cityForecastSearch'
 
 const styles = (theme) => ({
@@ -24,13 +23,13 @@ const styles = (theme) => ({
     }
 })
 
-class cityForecast extends React.Component {
+class ForecastView extends React.Component {
     state = {
         value: 'table'
     }
 
     render() {
-        let { classes } = this.props;
+        let { classes, searchComponent } = this.props;
         let forecastView = [];
         if (this.props.fiveDayWeather) {
             forecastView.push(
@@ -55,9 +54,8 @@ class cityForecast extends React.Component {
             <Fragment>
                 <Card className={classes.weatherCard}>
                     <CardContent>
-                        <CityForecastSearch />
+                        {searchComponent}
                         {forecastView}
-                        
                     </ CardContent>
                 </ Card>
                 
@@ -71,4 +69,4 @@ class cityForecast extends React.Component {
     }
 };
 
-export default withStyles(styles)(cityForecast);
+export default withStyles(styles)(ForecastView);

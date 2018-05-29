@@ -1,9 +1,10 @@
-import { setSearchline, getFiveDayWeatherData } from '../actions'
+import HistoryForecastSearch from '../components/historyForecastSearch';
+import { setSearchline, getFiveDayWeatherData } from '../actions';
 import { connect } from 'react-redux';
-import ForecastView from '../components/forecastView';
+
 function mapStateToProps (state) {
     return {
-        fiveDayWeather: state.fiveDayWeather
+        historySearchline: state.historySearchline
     }
 }
 
@@ -18,4 +19,4 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForecastView);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryForecastSearch)
