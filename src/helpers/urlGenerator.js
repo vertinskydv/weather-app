@@ -6,5 +6,5 @@ export function getCityUrl(city) {
 }
 
 export function getHistoryUrl(city, startDate) {
-    return `${cityMainUrl}forecast?APPID=${weatherApiKey}&q=${city}&units=metric`
+    return `${historyMainUrl}?APPID=${weatherApiKey}&q=${city}&start=${startDate}&cnt=24`
 }
