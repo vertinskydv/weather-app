@@ -2,14 +2,10 @@ import React, { Fragment } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { withStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import LinearChart from './linearChart';
 import WeatherTable from './weatherTable';
-
-import CityForecastSearch from '../containers/cityForecastSearch'
 
 const styles = (theme) => ({
     weatherCard: {
@@ -29,9 +25,9 @@ class ForecastView extends React.Component {
     }
 
     render() {
-        let { classes, searchComponent } = this.props;
+        let { classes, searchComponent, forecast } = this.props;
         let forecastView = [];
-        if (this.props.fiveDayWeather) {
+        if (forecast) {
             forecastView.push(
                 <Select key='three-day-forecast-select-view' 
                     className={classes.forecastViewSelect}
@@ -43,10 +39,10 @@ class ForecastView extends React.Component {
                 </Select>
             );
             if (this.state.value === 'chart') {
-                forecastView.push(<LinearChart key='three-day-forecast-linear' weather = {this.props.fiveDayWeather} />);
+                forecastView.push(<LinearChart key='three-day-forecast-linear' weather = {forecast} />);
             }
             else if (this.state.value === 'table') {
-                forecastView.push(<WeatherTable key='three-day-forecast-chart' weather = {this.props.fiveDayWeather} />);
+                forecastView.push(<WeatherTable key='three-day-forecast-chart' weather = {forecast} />);
             }
         }
 

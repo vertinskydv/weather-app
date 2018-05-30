@@ -1,19 +1,19 @@
-import { setSearchline, getFiveDayWeatherData } from '../actions'
+import { setCity, getForecast } from '../actions/cityForecast'
 import { connect } from 'react-redux';
 import ForecastView from '../components/forecastView';
 function mapStateToProps (state) {
     return {
-        fiveDayWeather: state.fiveDayWeather
+        forecast: state.cityForecast.forecast
     }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
-        setSearchline: (city) => {
-            dispatch(setSearchline(city));
+        setCity: (city) => {
+            dispatch(setCity(city));
         },
-        getFiveDayWeatherData: (city) => {
-            dispatch(getFiveDayWeatherData(city))
+        getForecast: (city) => {
+            dispatch(getForecast(city))
         }
     }
 }

@@ -1,20 +1,24 @@
 import HistoryForecastSearch from '../components/historyForecastSearch';
-import { setSearchline, getFiveDayWeatherData } from '../actions';
+import { setCity, setDate,  getForecast} from '../actions/historyForecast';
 import { connect } from 'react-redux';
 
 function mapStateToProps (state) {
     return {
-        historySearchline: state.historySearchline
+        city: state.historyForecast.city,
+        date: state.historyForecast.date
     }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
-        setSearchline: (city) => {
-            dispatch(setSearchline(city));
+        setCity: (city) => {
+            dispatch(setCity(city));
         },
-        getFiveDayWeatherData: (city) => {
-            dispatch(getFiveDayWeatherData(city))
+        setDate: (date) => {
+            dispatch(setDate(date))
+        },
+        getForecast: (city, date) => {
+            dispatch(getForecast(city, date))
         }
     }
 }

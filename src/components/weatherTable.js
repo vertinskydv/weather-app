@@ -1,12 +1,9 @@
 import React from 'react';
-import Highcharts from 'highcharts';
 import moment from 'moment';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-// import weatherIcons from '../images/weather-animated/weather-sprite.svg';
-// import i01d from '../images/weather-animated/01d.svg';
 import icon01d from '../images/weather-animated/day.svg';
 import icon01n from '../images/weather-animated/night.svg';
 import icon02d from '../images/weather-animated/cloudy-day-1.svg';
@@ -65,12 +62,11 @@ class WeatherTable extends React.Component {
                 <TableBody>
                 {
                     this.weather.list.map(element => {
-                        let windDirrection;
                         return (
                             <TableRow key={element.dt}>
                                 <TableCell>{moment.unix(element.dt).format('D MMM H:mm')}</TableCell>
                                 <TableCell>
-                                    <img src={weatherIcons['icon' + element.weather[0].icon]}/>
+                                    <img src={weatherIcons['icon' + element.weather[0].icon]} alt={element.weather[0].description}/>
                                 </TableCell>
                                 <TableCell>{Math.round(element.main.temp)}°C</TableCell>
                             </TableRow>

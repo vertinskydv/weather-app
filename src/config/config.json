@@ -1,4 +1,5 @@
 {
-    "weatherApiKey": "ae6050de6496b1c975184a7b097f43cb",
-    "weatherUrl": "http://api.openweathermap.org/data/2.5/"
+    "weatherApiKey": "8acc59e344fddf700eff73a16c34dbdd",
+    "cityMainUrl": "http://api.openweathermap.org/data/2.5/",
+    "historyMainUrl": "http://history.openweathermap.org/data/2.5/history/city"
 }

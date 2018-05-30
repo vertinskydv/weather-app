@@ -1,11 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
+import { DatePicker } from 'material-ui-pickers';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -17,7 +14,16 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit,
       marginRight: theme.spacing.unit,
       width: 200,
+      flex: '1 1 auto'
     },
+    dateField: {
+        marginTop: 16,
+        marginBottom: 8
+    },
+    searchButton: {
+        marginTop: 18,
+
+    }
 });
 
 class HistoryForecastSearch extends React.Component {
@@ -29,19 +35,37 @@ class HistoryForecastSearch extends React.Component {
         this.setState({ selectedDate: date });
     };
     render() {
-        const {classes ,forecastCity, getFiveDayWeatherData, setSearchline } = this.props;
+        const {classes, city, date, setCity, setDate, getForecast } = this.props;
         return (
             <form noValidate className={classes.container} autoComplete="off">
                 <TextField
                     id="name"
-                    label="Name"
+                    label="City"
                     margin="normal"
+                    className={classes.textField}
+                    value={city}
+                    onChange={(event) => {
+                        setCity(event.target.value);
+                    }}
                 />
-                <TextField
-                    type="date"
-                    value={this.state.selectedDate}
-                    onChange={this.handleDateChange}
+                <DatePicker
+                    label="Date"
+                    format="D MMMM YYYY"
+                    value={date}
+                    onChange={(date) => {
+                        setDate(date);
+                    }}
+                    className={classes.dateField + ' ' + classes.textField}
                 />
+                <IconButton
+                    color="primary"
+                    className={classes.searchButton}
+                    onClick={() => {
+                        getForecast(city, date);
+                    }}
+                    >
+                    <Search />
+                </IconButton>
             </form>
         )
     }

@@ -6,11 +6,17 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
-import { appReducer, initialState } from './reducers';
+import appReducer from './reducers';
+import { cityForecastInitial } from './reducers/cityForecast';
+import { historyForecastInitial } from './reducers/historyForecast';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(appReducer, initialState, composeEnhancers(
+const initialReducerState = {
+    cityForecast: cityForecastInitial,
+    historyForecast: historyForecastInitial,
+};
+const store = createStore(appReducer, initialReducerState, composeEnhancers(
     applyMiddleware(thunk)
 ));
 /* eslint-enable */

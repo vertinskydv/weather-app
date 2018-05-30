@@ -4,8 +4,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import Header from "./containers/header";
+import MainHeader from "./components/mainHeader";
 import CityForecast from "./containers/cityForecast";
+import HistoryForecast from "./containers/historyForecast";
 import CityForecastSearch from "./containers/cityForecastSearch";
 import HistoryForecastSearch from "./containers/historyForecastSearch";
 
@@ -15,8 +16,9 @@ class App extends Component {
   render() {
     return (
         <React.Fragment>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
           <CssBaseline />
-          <Header />
+          <MainHeader />
           <Switch>
           <Route path='/forecast'  render={() => {
             return (
@@ -25,13 +27,13 @@ class App extends Component {
             }} />
           <Route path='/history-forecast' render={() => {
             return (
-              <CityForecast searchComponent={<HistoryForecastSearch />} />
+              <HistoryForecast searchComponent={<HistoryForecastSearch />} />
             ); 
             }} />
           <Redirect from="/" to="/forecast" />
           </Switch>
+          </MuiPickersUtilsProvider>
         </React.Fragment>
-
     )
   };
 }
