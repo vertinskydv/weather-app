@@ -9,6 +9,7 @@ import CityForecast from "./containers/cityForecast";
 import HistoryForecast from "./containers/historyForecast";
 import CityForecastSearch from "./containers/cityForecastSearch";
 import HistoryForecastSearch from "./containers/historyForecastSearch";
+import ForecastComparison from "./containers/forecastComparison";
 
 import './App.css';
 
@@ -28,6 +29,11 @@ class App extends Component {
           <Route path='/history-forecast' render={() => {
             return (
               <HistoryForecast searchComponent={<HistoryForecastSearch />} />
+            ); 
+            }} />
+          <Route path='/forecast-comparison' render={() => {
+            return (
+              <ForecastComparison/>
             ); 
             }} />
           <Redirect from="/" to="/forecast" />

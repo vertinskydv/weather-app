@@ -9,12 +9,14 @@ import App from './App';
 import appReducer from './reducers';
 import { cityForecastInitial } from './reducers/cityForecast';
 import { historyForecastInitial } from './reducers/historyForecast';
+import { comparisonForecastInitial } from './reducers/comparisonForecast';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialReducerState = {
     cityForecast: cityForecastInitial,
     historyForecast: historyForecastInitial,
+    comparisonForecast: comparisonForecastInitial
 };
 const store = createStore(appReducer, initialReducerState, composeEnhancers(
     applyMiddleware(thunk)

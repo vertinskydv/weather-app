@@ -19,5 +19,5 @@ export function getForecast(city) {
 }
 
 export function setForecast(cityWeather) {
-    return { type: CITY_FORECAST_SET_FORECAST, payload: cityWeather}
+    return {type: CITY_FORECAST_SET_FORECAST, payload: cityWeather}
 }

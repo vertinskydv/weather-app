@@ -1,5 +1,6 @@
 {
     "weatherApiKey": "8acc59e344fddf700eff73a16c34dbdd",
-    "cityMainUrl": "http://api.openweathermap.org/data/2.5/",
-    "historyMainUrl": "http://history.openweathermap.org/data/2.5/history/city"
+    "historyApiKey": "7597fce9d81a457d8833ad1679b5001c",
+    "cityMainUrl": "http://api.openweathermap.org/data/2.5/forecast",
+    "historyMainUrl": "https://api.weatherbit.io/v2.0/history/daily"
 }

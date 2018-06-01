@@ -47,7 +47,7 @@ class MainHeader extends React.Component {
                         </IconButton>
                         <Menu open={Boolean(this.state.menuOpen)} anchorEl={this.state.menuOpen} onClose={this.handleClose}>
                             <MenuItem onClick={this.handleClose}><Link className={classes.menuLink} to='/forecast'>5 day forecast</Link></MenuItem>
-                            <MenuItem onClick={this.handleClose}><Link className={classes.menuLink} to='/history-forecast'>History forecast</Link></MenuItem>
+                            <MenuItem onClick={this.handleClose}><Link className={classes.menuLink} to='/forecast-comparison'>Forecast comparison</Link></MenuItem>
                         </Menu>
                     </Typography>
                 </Toolbar>
