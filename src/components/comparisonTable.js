@@ -14,11 +14,6 @@ import weatherIcons from '../helpers/wearherIcons';
 const styles = (theme) => ({
     cellAlign: {
         verticalAlign: 'middle'
-    },
-    table: {
-        display: 'block',
-        width: '100%',
-        overflowX: 'auto',
     }
 })
 
@@ -46,7 +41,6 @@ class ComparisonTable extends React.Component {
                             aria-label="Delete"
                             onClick={(event, a, b) => {
                                 removeCity(event.currentTarget.dataset.city.toLowerCase());
-
                             }}
                         >
                             <DeleteIcon />

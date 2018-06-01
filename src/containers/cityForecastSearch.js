@@ -13,8 +13,9 @@ function mapDispatchToProps (dispatch) {
         setCity: (city) => {
             dispatch(setCity(city));
         },
-        getForecast: (city) => {
-            dispatch(getForecast(city))
+        getForecast: async (city) => {
+            const setCityResult = await dispatch(getForecast(city));
+            return setCityResult;
         }
     }
 }

@@ -9,7 +9,7 @@ const styles = theme => ({
     container: {
       display: 'flex',
       flexWrap: 'wrap',
-      alignItems: 'flex-end'
+      alignItems: 'flex-start'
     },
     textField: {
       marginLeft: theme.spacing.unit,
@@ -20,31 +20,42 @@ const styles = theme => ({
 
 class ForecastComparisonSearch extends React.Component {
     state = {
-        city: ''
+        city: '',
+        error: ''
     };
-    
-    handleDateChange = date => {
-        this.setState({ selectedDate: date });
-    };
+
     render() {
-        const {classes, addCity} = this.props;
+        const {classes, addCity, comparisonForecast} = this.props;
         return (
             <form noValidate className={classes.container} autoComplete="off">
                 <TextField
                     id="name"
                     label="City"
+                    error={Boolean(this.state.error)}
+                    helperText={this.state.error}
                     value={this.state.city}
                     className={classes.textField}
                     onChange={(event) => {
                         this.setState({city: event.target.value});
                     }}
+                    onFocus={() => {
+                        this.setState({error: ""});
+                    }}
                 />
                 <Button
                     variant="outlined"
                     color="primary"
-                    onClick={() => {
-                        addCity(this.state.city.toLowerCase());
-                        this.setState({city: ""});
+                    onClick={async () => {
+                        let addCityResult = await addCity(this.state.city.toLowerCase());
+                        if (!addCityResult.valid) {
+                            this.setState({error: addCityResult.error});
+                        }
+                        else if (comparisonForecast[this.state.city.toLowerCase()]) {
+                            this.setState({error: "City already added"});
+                        }
+                        else {
+                            this.setState({city: ""});
+                        }                        
                     }}
                 >
                     Add

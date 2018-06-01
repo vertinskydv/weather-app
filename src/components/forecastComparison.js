@@ -31,7 +31,7 @@ class ForecastComparison extends React.Component {
         return (
             <Card className={classes.weatherCard}>
                 <CardContent>
-                    <ForecastComparisonSearch addCity={addCity}/>
+                    <ForecastComparisonSearch comparisonForecast={comparisonForecast} addCity={addCity}/>
                     <ComparisonTable comparisonForecast={comparisonForecast} removeCity={removeCity}/>
                 </ CardContent>
             </ Card>

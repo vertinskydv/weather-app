@@ -9,8 +9,9 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
     return {
-        addCity: (city) => {
-            dispatch(addCity(city));
+        addCity: async (city) => {
+            const addCityResult = await dispatch(addCity(city));
+            return addCityResult;
         },
         removeCity: (city) => {
             dispatch(removeCity(city));

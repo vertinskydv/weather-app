@@ -10,6 +10,10 @@ export function addCity(city) {
         const forecast = await forecastResp.json();
         if (forecast.cod == '200') {
             dispatch(addForecast(city, forecast));
+            return {valid: true};
+        }
+        else {
+            return {valid: false, error: 'City is not correct'};
         }
     }
 }

@@ -8,10 +8,3 @@ export function formatToComparisonTable(data) {
     })
     return formattedData;
 }
-
-
-
-
-// {
-//     date: [{}, {},]
-// }

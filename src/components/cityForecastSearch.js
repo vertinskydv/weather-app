@@ -3,10 +3,15 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 
 class CityForecastSearch extends React.Component {
+    state = {
+        error: ''
+    };
+
     render() {
         const { city, setCity, getForecast } = this.props;
         return (
@@ -16,6 +21,8 @@ class CityForecastSearch extends React.Component {
                     id="city-forecast-searchline"
                     type='text'
                     value={city}
+                    error={Boolean(this.state.error)}
+                    helperText={this.state.error}
                     onChange = { event => {
                         setCity(event.target.value);
                     }}
@@ -24,12 +31,18 @@ class CityForecastSearch extends React.Component {
                             getForecast(city);
                         }
                     }}
+                    onFocus={() => {
+                        this.setState({error: ""});
+                    }}
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
                                 aria-label="Search city forecast"
-                                onClick={(event) => {
-                                    getForecast(city);
+                                onClick={async (event) => {
+                                    const getForecastResult = await getForecast(city);
+                                    if (!getForecastResult.valid) {
+                                        this.setState({error: getForecastResult.error});
+                                    }
                                 }}
                             >
                                 <Search />
@@ -37,6 +50,7 @@ class CityForecastSearch extends React.Component {
                         </InputAdornment>
                     }
                 />
+                <FormHelperText error={Boolean(this.state.error)}>{this.state.error}</FormHelperText>
             </FormControl>
         )
     }

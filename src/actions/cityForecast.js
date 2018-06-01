@@ -14,6 +14,10 @@ export function getForecast(city) {
         const weather = await weatherResp.json();
         if (weather.cod == '200') {
             dispatch(setForecast(weather));
+            return {valid: true};
+        }
+        else {
+            return {valid: false, error: 'City is not correct'};
         }
     }
 }
