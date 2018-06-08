@@ -21,7 +21,7 @@ export function getForecast(city, date) {
   return async (dispatch) => {
     const weatherResp = await fetch(getHistoryUrl(city, date));
     const weather = await weatherResp.json();
-    if (weather.cod === 200) {
+    if (+weather.cod === 200) {
       dispatch(setForecast(weather));
     }
   };

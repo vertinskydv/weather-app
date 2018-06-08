@@ -22,7 +22,7 @@ class CityForecastSearch extends React.Component {
           type='text'
           value={city}
           error={Boolean(this.state.error)}
-          helperText={this.state.error}
+          helpertext={this.state.error}
           onChange = {(event) => {
             setCity(event.target.value);
           }}

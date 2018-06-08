@@ -12,7 +12,7 @@ export function addCity(city) {
   return async (dispatch) => {
     const forecastResp = await fetch(getCityUrl(city));
     const forecast = await forecastResp.json();
-    if (forecast.cod === 200) {
+    if (+forecast.cod === 200) {
       dispatch(addForecast(city, forecast));
       return { valid: true };
     }

@@ -49,7 +49,7 @@ class ComparisonTable extends React.Component {
         ))}
       </TableRow>);
 
-      Object.keys(forecasts[0]).map(time => (
+      body.push(Object.keys(forecasts[0]).map(time => (
         <TableRow>
           <TableCell>{moment.unix(time).format('D MMM H:mm')}</TableCell>
           {
@@ -65,7 +65,7 @@ class ComparisonTable extends React.Component {
             })
           }
         </TableRow>
-      ));
+      )));
 
       return (
         <Table className={classes.table}>

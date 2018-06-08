@@ -16,7 +16,7 @@ export function getForecast(city) {
   return async (dispatch) => {
     const weatherResp = await fetch(getCityUrl(city));
     const weather = await weatherResp.json();
-    if (weather.cod === 200) {
+    if (+weather.cod === 200) {
       dispatch(setForecast(weather));
       return { valid: true };
     }
