@@ -1,10 +1,9 @@
-import { cityMainUrl, historyMainUrl, weatherApiKey } from "../config/config";
-import moment from "moment";
+import { cityMainUrl, historyMainUrl, weatherApiKey } from '../config/config.json';
 
 export function getCityUrl(city) {
-    return `${cityMainUrl}?APPID=${weatherApiKey}&q=${city}&units=metric`
+  return `${cityMainUrl}?APPID=${weatherApiKey}&q=${city}&units=metric`;
 }
 
 export function getHistoryUrl(city, startDate) {
-    return `${historyMainUrl}?APPID=${weatherApiKey}&q=${city}&start=${startDate}&cnt=24`
+  return `${historyMainUrl}?APPID=${weatherApiKey}&q=${city}&start=${startDate}&cnt=24`;
 }

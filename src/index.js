@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
@@ -11,16 +11,14 @@ import { cityForecastInitial } from './reducers/cityForecast';
 import { historyForecastInitial } from './reducers/historyForecast';
 import { comparisonForecastInitial } from './reducers/comparisonForecast';
 
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialReducerState = {
-    cityForecast: cityForecastInitial,
-    historyForecast: historyForecastInitial,
-    comparisonForecast: comparisonForecastInitial
+  cityForecast: cityForecastInitial,
+  historyForecast: historyForecastInitial,
+  comparisonForecast: comparisonForecastInitial
 };
-const store = createStore(appReducer, initialReducerState, composeEnhancers(
-    applyMiddleware(thunk)
-));
+const store = createStore(appReducer, initialReducerState, composeEnhancers(applyMiddleware(thunk)));
 /* eslint-enable */
 
 ReactDOM.render(
