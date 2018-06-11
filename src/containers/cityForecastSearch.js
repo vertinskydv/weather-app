@@ -9,15 +9,16 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    setCity: (city) => {
-      dispatch(setCity(city));
-    },
+  const dispatchers = {
     getForecast: async (city) => {
       const setCityResult = await dispatch(getForecast(city));
       return setCityResult;
+    },
+    inputChangeHandler: (event) => {
+      dispatch(setCity(event.target.value));
     }
   };
+  return dispatchers;
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityForecastSearch);

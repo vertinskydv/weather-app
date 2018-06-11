@@ -13,7 +13,7 @@ class CityForecastSearch extends React.Component {
   };
 
   render() {
-    const { city, setCity, getForecast } = this.props;
+    const { city, getForecast, inputChangeHandler } = this.props;
     return (
       <FormControl fullWidth>
         <InputLabel htmlFor='city-forecast-searchline'>City</InputLabel>
@@ -23,12 +23,13 @@ class CityForecastSearch extends React.Component {
           value={city}
           error={Boolean(this.state.error)}
           helpertext={this.state.error}
-          onChange = {(event) => {
-            setCity(event.target.value);
-          }}
-          onKeyPress = {(event) => {
+          onChange = {inputChangeHandler}
+          onKeyPress = {async (event) => {
             if (event.key === 'Enter' && city) {
-              getForecast(city);
+              const getForecastResult = await getForecast(city);
+              if (!getForecastResult.valid) {
+                this.setState({ error: getForecastResult.error });
+              }
             }
           }}
           onFocus={() => {
