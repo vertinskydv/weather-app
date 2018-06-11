@@ -23,7 +23,7 @@ class ForecastComparisonSearch extends React.Component {
   };
 
   render() {
-    const { classes, addCity, comparisonForecast } = this.props;
+    const { classes } = this.props;
     return (
       <form noValidate className={classes.container} autoComplete='off'>
         <TextField
@@ -35,6 +35,13 @@ class ForecastComparisonSearch extends React.Component {
           className={classes.textField}
           onChange={(event) => {
             this.setState({ city: event.target.value });
+            this.setState({ error: '' });
+          }}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter' && this.state.city) {
+              event.preventDefault();
+              this.addCity();
+            }
           }}
           onFocus={() => {
             this.setState({ error: '' });
@@ -43,21 +50,24 @@ class ForecastComparisonSearch extends React.Component {
         <Button
           variant='outlined'
           color='primary'
-          onClick={async () => {
-            const addCityResult = await addCity(this.state.city.toLowerCase());
-            if (!addCityResult.valid) {
-              this.setState({ error: addCityResult.error });
-            } else if (comparisonForecast[this.state.city.toLowerCase()]) {
-              this.setState({ error: 'City already added' });
-            } else {
-              this.setState({ city: '' });
-            }
-          }}
+          onClick={this.addCity}
         >
           Add
         </Button>
       </form>
     );
+  }
+
+  addCity = async () => {
+    const { addCity, comparisonForecast } = this.props;
+    const addCityResult = await addCity(this.state.city.toLowerCase());
+    if (!addCityResult.valid) {
+      this.setState({ error: addCityResult.error });
+    } else if (comparisonForecast[this.state.city.toLowerCase()]) {
+      this.setState({ error: 'City already added' });
+    } else {
+      this.setState({ city: '' });
+    }
   }
 }
 

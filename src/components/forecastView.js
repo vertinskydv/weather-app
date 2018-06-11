@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -28,6 +29,10 @@ class ForecastView extends React.Component {
     const { classes, searchComponent, forecast } = this.props;
     const forecastView = [];
     if (forecast) {
+      forecastView.push(<Typography variant='display1' gutterBottom>
+        {forecast.city.name}
+      </Typography>);
+
       forecastView.push(<Select
           key='three-day-forecast-select-view'
           className={classes.forecastViewSelect}
