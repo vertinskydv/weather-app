@@ -26,13 +26,11 @@ class ComparisonTable extends React.Component {
       const body = [];
       const cities = Object.keys(comparisonForecastFormatted);
       const forecasts = Object.values(comparisonForecastFormatted);
-
       const headerCells = cities.map(city => (
         <TableCell key={`${city}-header`}><Typography variant='subheading' gutterBottom>
           {city}
         </Typography></TableCell>
       ));
-
 
       body.push(<TableRow>
         <TableCell></TableCell>
