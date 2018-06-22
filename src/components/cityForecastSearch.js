@@ -8,12 +8,14 @@ import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 
 class CityForecastSearch extends React.Component {
-  state = {
-    error: '',
-  };
-
   render() {
-    const { city, getForecast, inputChangeHandler } = this.props;
+    const {
+      city,
+      inputError,
+      searchHandler,
+      inputChangeHandler,
+      inputKeydownHandler
+    } = this.props;
     return (
       <FormControl fullWidth>
         <InputLabel htmlFor='city-forecast-searchline'>City</InputLabel>
@@ -21,29 +23,20 @@ class CityForecastSearch extends React.Component {
           id='city-forecast-searchline'
           type='text'
           value={city}
-          error={Boolean(this.state.error)}
-          helpertext={this.state.error}
+          error={Boolean(inputError)}
+          helpertext={inputError}
           onChange = {inputChangeHandler}
-          onKeyPress = {async (event) => {
-            if (event.key === 'Enter' && city) {
-              const getForecastResult = await getForecast(city);
-              if (!getForecastResult.valid) {
-                this.setState({ error: getForecastResult.error });
-              }
-            }
-          }}
-          onFocus={() => {
-            this.setState({ error: '' });
+          onKeyPress = {(e) => {
+            inputKeydownHandler(e, city);
           }}
           endAdornment={
             <InputAdornment position='end'>
               <IconButton
                   aria-label='Search city forecast'
-                  onClick={async () => {
-                      const getForecastResult = await getForecast(city);
-                      if (!getForecastResult.valid) {
-                        this.setState({ error: getForecastResult.error });
-                      }
+                  onClick={() => {
+                    if (city) {
+                      searchHandler(city);
+                    }
                   }}
               >
                 <Search />
@@ -51,7 +44,7 @@ class CityForecastSearch extends React.Component {
             </InputAdornment>
           }
         />
-        <FormHelperText error={Boolean(this.state.error)}>{this.state.error}</FormHelperText>
+        <FormHelperText error={Boolean(inputError)}>{inputError}</FormHelperText>
       </FormControl>
     );
   }
