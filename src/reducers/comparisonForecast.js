@@ -2,13 +2,15 @@ import {
   COMPARISON_FORECAST_ADD_CITY_FORECAST,
   COMPARISON_FORECAST_REMOVE_CITY_FORECAST,
   COMPARISON_FORECAST_SET_SEARCH_INPUT,
-  COMPARISON_FORECAST_SET_INPUT_ERROR
+  COMPARISON_FORECAST_SET_INPUT_ERROR,
+  COMPARISON_FORECAST_SET_SPINNER
 } from '../actions/comparisonForecast';
 
 export const comparisonForecastInitial = {
   inputValue: '',
   forecast: {},
-  inputError: ''
+  inputError: '',
+  loading: false
 };
 
 export function comparisonForecast(state = comparisonForecastInitial, action) {
@@ -35,6 +37,9 @@ export function comparisonForecast(state = comparisonForecastInitial, action) {
     }
     case COMPARISON_FORECAST_SET_INPUT_ERROR: {
       return { ...state, inputError: action.payload };
+    }
+    case COMPARISON_FORECAST_SET_SPINNER: {
+      return { ...state, loading: action.payload };
     }
     default:
       return state;

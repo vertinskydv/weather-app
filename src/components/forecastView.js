@@ -26,22 +26,20 @@ class ForecastView extends React.Component {
   }
 
   render() {
-    const { classes, searchComponent, forecast } = this.props;
+    const {
+      classes,
+      searchComponent,
+      forecast
+    } = this.props;
     const forecastView = [];
+
     if (forecast) {
       forecastView.push(<Typography variant='display1' gutterBottom>
         {forecast.city.name}
       </Typography>);
 
-      forecastView.push(<Select
-          key='three-day-forecast-select-view'
-          className={classes.forecastViewSelect}
-          value={this.state.value}
-          onChange={this.handleViewSelectChange}
-        >
-          <MenuItem value={'table'}>Table</MenuItem>
-          <MenuItem value={'chart'}>Chart</MenuItem>
-        </Select>);
+      forecastView.push(this.getViewSwitcher());
+
       if (this.state.value === 'chart') {
         forecastView.push(<LinearChart key='three-day-forecast-linear' weather = {forecast} />);
       } else if (this.state.value === 'table') {
@@ -63,6 +61,19 @@ class ForecastView extends React.Component {
 
   handleViewSelectChange = (e) => {
     this.setState({ value: e.target.value });
+  }
+
+  getViewSwitcher() {
+    const { classes } = this.props;
+    return (<Select
+      key='three-day-forecast-select-view'
+      className={classes.forecastViewSelect}
+      value={this.state.value}
+      onChange={this.handleViewSelectChange}
+    >
+      <MenuItem value={'table'}>Table</MenuItem>
+      <MenuItem value={'chart'}>Chart</MenuItem>
+    </Select>);
   }
 }
 

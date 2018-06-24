@@ -3,6 +3,7 @@ export const COMPARISON_FORECAST_ADD_CITY_FORECAST = 'COMPARISON_FORECAST_ADD_CI
 export const COMPARISON_FORECAST_REMOVE_CITY_FORECAST = 'COMPARISON_FORECAST_REMOVE_CITY';
 export const COMPARISON_FORECAST_SET_SEARCH_INPUT = 'COMPARISON_FORECAST_SET_SEARCH_INPUT';
 export const COMPARISON_FORECAST_SET_INPUT_ERROR = 'COMPARISON_FORECAST_SET_INPUT_ERROR';
+export const COMPARISON_FORECAST_SET_SPINNER = 'COMPARISON_FORECAST_SET_SPINNER';
 
 export function getCityForecast(city) {
   return { type: COMPARISON_FORECAST_GET_CITY_FORECAST, payload: city };
@@ -22,4 +23,8 @@ export function removeCityForecast(city) {
 
 export function setSearchInputError(error) {
   return { type: COMPARISON_FORECAST_SET_INPUT_ERROR, payload: error };
+}
+
+export function setSpinner(value) {
+  return { type: COMPARISON_FORECAST_SET_SPINNER, payload: value };
 }

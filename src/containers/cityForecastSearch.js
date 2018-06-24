@@ -5,6 +5,7 @@ import { setCity, getForecast, setInputError } from '../actions/cityForecast';
 function mapStateToProps(state) {
   return {
     city: state.cityForecast.city,
+    loading: state.cityForecast.loading,
     inputError: state.cityForecast.inputError
   };
 }
