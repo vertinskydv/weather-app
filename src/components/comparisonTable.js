@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { formatToComparisonTable } from '../helpers/dataStructure';
+import formatToComparisonTable from '../helpers/dataStructure';
 import weatherIcons from '../helpers/wearherIcons';
 
 const styles = () => ({
@@ -20,10 +20,10 @@ const styles = () => ({
 
 class ComparisonTable extends React.Component {
   render() {
-    const { comparisonForecast, removeCity, classes } = this.props;
-    if (Object.keys(comparisonForecast).length) {
-      const comparisonForecastFormatted = formatToComparisonTable(comparisonForecast);
-      const body = [];
+    const { comparisonForecast, removeCityForecast, classes } = this.props;
+    if (Object.keys(comparisonForecast.forecast).length) {
+      const comparisonForecastFormatted = formatToComparisonTable(comparisonForecast.forecast);
+      const tableBody = [];
       const cities = Object.keys(comparisonForecastFormatted);
       const forecasts = Object.values(comparisonForecastFormatted);
       const headerCells = cities.map(city => (
@@ -32,7 +32,7 @@ class ComparisonTable extends React.Component {
         </Typography></TableCell>
       ));
 
-      body.push(<TableRow>
+      tableBody.push(<TableRow>
         <TableCell></TableCell>
         {cities.map(city => (
           <TableCell>
@@ -41,7 +41,7 @@ class ComparisonTable extends React.Component {
               className={classes.button}
               aria-label='Delete'
               onClick={(event) => {
-                removeCity(event.currentTarget.dataset.city.toLowerCase());
+                removeCityForecast(event.currentTarget.dataset.city.toLowerCase());
               }}
             >
               <DeleteIcon />
@@ -50,7 +50,7 @@ class ComparisonTable extends React.Component {
         ))}
       </TableRow>);
 
-      body.push(Object.keys(forecasts[0]).map(time => (
+      tableBody.push(Object.keys(forecasts[0]).map(time => (
         <TableRow>
           <TableCell>{moment.unix(time).format('D MMM H:mm')}</TableCell>
           {
@@ -77,7 +77,7 @@ class ComparisonTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {body}
+            {tableBody}
           </TableBody>
         </Table>
       );

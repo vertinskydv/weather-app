@@ -3,23 +3,26 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import './index.css';
 import App from './App';
 import appReducer from './reducers';
+import saga from './sagas';
 import { cityForecastInitial } from './reducers/cityForecast';
-import { historyForecastInitial } from './reducers/historyForecast';
 import { comparisonForecastInitial } from './reducers/comparisonForecast';
 
+
 /* eslint-disable */
+const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialReducerState = {
   cityForecast: cityForecastInitial,
-  historyForecast: historyForecastInitial,
   comparisonForecast: comparisonForecastInitial
 };
-const store = createStore(appReducer, initialReducerState, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(appReducer, initialReducerState, composeEnhancers(applyMiddleware(sagaMiddleware)));
 /* eslint-enable */
+
+sagaMiddleware.run(saga);
 
 ReactDOM.render(
     <BrowserRouter>

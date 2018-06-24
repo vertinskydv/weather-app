@@ -1,6 +1,6 @@
 import { keyBy } from 'lodash';
 
-export function formatToComparisonTable(data) {
+export default function formatToComparisonTable(data) {
   const weathers = Object.values(data);
   const formattedData = {};
   weathers.forEach((weather) => {

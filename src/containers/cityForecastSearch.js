@@ -1,21 +1,28 @@
 import { connect } from 'react-redux';
 import CityForecastSearch from '../components/cityForecastSearch';
-import { setCity, getForecast } from '../actions/cityForecast';
+import { setCity, getForecast, setInputError } from '../actions/cityForecast';
 
 function mapStateToProps(state) {
   return {
-    city: state.cityForecast.city
+    city: state.cityForecast.city,
+    loading: state.cityForecast.loading,
+    inputError: state.cityForecast.inputError
   };
 }
 
 function mapDispatchToProps(dispatch) {
   const dispatchers = {
-    getForecast: async (city) => {
-      const setCityResult = await dispatch(getForecast(city));
-      return setCityResult;
+    searchHandler: async (city) => {
+      dispatch(getForecast(city));
     },
     inputChangeHandler: (event) => {
       dispatch(setCity(event.target.value));
+      dispatch(setInputError(''));
+    },
+    inputKeydownHandler: (event, city) => {
+      if (event.key === 'Enter' && city) {
+        dispatch(getForecast(city));
+      }
     }
   };
   return dispatchers;
