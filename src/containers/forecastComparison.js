@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addCity, removeCity } from '../actions/comparisonForecast';
+import { getCityForecast, removeCityForecast, setSearchInput, setSearchInputError } from '../actions/comparisonForecast';
 import ForecastComparison from '../components/forecastComparison';
 
 function mapStateToProps(state) {
@@ -10,12 +10,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addCity: async (city) => {
-      const addCityResult = await dispatch(addCity(city));
-      return addCityResult;
+    getCityForecast: async (city) => {
+      dispatch(getCityForecast(city));
     },
-    removeCity: (city) => {
-      dispatch(removeCity(city));
+    removeCityForecast: (city) => {
+      dispatch(removeCityForecast(city));
+    },
+    setSearchInput: (text) => {
+      dispatch(setSearchInput(text));
+    },
+    setSearchInputError: (error) => {
+      dispatch(setSearchInputError(error));
     }
   };
 }

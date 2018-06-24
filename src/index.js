@@ -9,7 +9,6 @@ import App from './App';
 import appReducer from './reducers';
 import saga from './sagas';
 import { cityForecastInitial } from './reducers/cityForecast';
-import { historyForecastInitial } from './reducers/historyForecast';
 import { comparisonForecastInitial } from './reducers/comparisonForecast';
 
 
@@ -18,7 +17,6 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialReducerState = {
   cityForecast: cityForecastInitial,
-  historyForecast: historyForecastInitial,
   comparisonForecast: comparisonForecastInitial
 };
 const store = createStore(appReducer, initialReducerState, composeEnhancers(applyMiddleware(sagaMiddleware)));

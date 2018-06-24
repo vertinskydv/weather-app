@@ -17,57 +17,45 @@ const styles = theme => ({
 });
 
 class ForecastComparisonSearch extends React.Component {
-  state = {
-    city: '',
-    error: ''
-  };
-
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      comparisonForecast,
+      getCityForecast,
+      setSearchInput,
+      setSearchInputError
+    } = this.props;
     return (
       <form noValidate className={classes.container} autoComplete='off'>
         <TextField
           id='name'
           label='City'
-          error={Boolean(this.state.error)}
-          helperText={this.state.error}
-          value={this.state.city}
+          error={Boolean(comparisonForecast.inputError)}
+          helperText={comparisonForecast.inputError}
+          value={comparisonForecast.inputValue}
           className={classes.textField}
           onChange={(event) => {
-            this.setState({ city: event.target.value });
-            this.setState({ error: '' });
+            setSearchInput(event.target.value);
+            setSearchInputError('');
           }}
           onKeyPress={(event) => {
-            if (event.key === 'Enter' && this.state.city) {
+            if (event.key === 'Enter' && comparisonForecast.inputText) {
               event.preventDefault();
-              this.addCity();
+              getCityForecast(comparisonForecast.inputText);
             }
-          }}
-          onFocus={() => {
-            this.setState({ error: '' });
           }}
         />
         <Button
           variant='outlined'
           color='primary'
-          onClick={this.addCity}
+          onClick={() => {
+            getCityForecast(comparisonForecast.inputValue);
+          }}
         >
           Add
         </Button>
       </form>
     );
-  }
-
-  addCity = async () => {
-    const { addCity, comparisonForecast } = this.props;
-    const addCityResult = await addCity(this.state.city.toLowerCase());
-    if (!addCityResult.valid) {
-      this.setState({ error: addCityResult.error });
-    } else if (comparisonForecast[this.state.city.toLowerCase()]) {
-      this.setState({ error: 'City already added' });
-    } else {
-      this.setState({ city: '' });
-    }
   }
 }
 

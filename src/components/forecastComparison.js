@@ -18,34 +18,37 @@ const styles = () => ({
 });
 
 class ForecastComparison extends React.Component {
-    state = {
-      value: 'table'
-    }
+  render() {
+    const {
+      classes,
+      getCityForecast,
+      removeCityForecast,
+      comparisonForecast,
+      setSearchInput,
+      setSearchInputError
+    } = this.props;
 
-    render() {
-      const {
-        classes,
-        addCity,
-        removeCity,
-        comparisonForecast
-      } = this.props;
+    return (
+        <Card className={classes.weatherCard}>
+            <CardContent>
+                <ForecastComparisonSearch
+                  comparisonForecast={comparisonForecast}
+                  setSearchInput={setSearchInput}
+                  getCityForecast={getCityForecast}
+                  setSearchInputError={setSearchInputError}
+                />
+                <ComparisonTable
+                  comparisonForecast={comparisonForecast}
+                  removeCityForecast={removeCityForecast}
+                />
+            </ CardContent>
+        </ Card>
+    );
+  }
 
-      return (
-          <Card className={classes.weatherCard}>
-              <CardContent>
-                  <ForecastComparisonSearch
-                    comparisonForecast={comparisonForecast}
-                    addCity={addCity}
-                  />
-                  <ComparisonTable comparisonForecast={comparisonForecast} removeCity={removeCity}/>
-              </ CardContent>
-          </ Card>
-      );
-    }
-
-    handleViewSelectChange = (e) => {
-      this.setState({ value: e.target.value });
-    }
+  handleViewSelectChange = (e) => {
+    this.setState({ value: e.target.value });
+  }
 }
 
 export default withStyles(styles)(ForecastComparison);
